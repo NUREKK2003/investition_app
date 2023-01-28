@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.material3.*
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,7 +43,10 @@ fun WelcomeInfo(
         Text(
             text = text,
             textAlign = TextAlign.Right,
-            style = MaterialTheme.typography.labelSmall,
+            style = MaterialTheme.typography.headlineMedium
+                .copy(
+                    fontWeight = FontWeight(700)
+                ),
             modifier = modifier
                 .fillMaxWidth()
                 .padding(5.dp)
@@ -50,10 +54,14 @@ fun WelcomeInfo(
         Text(
             text = saldo,
             textAlign = TextAlign.Right,
-            style = MaterialTheme.typography.headlineMedium,
+            style = MaterialTheme.typography.headlineLarge
+                .copy(
+                    fontSize = 50.sp,
+                    fontWeight = FontWeight(800)
+                ),
             modifier = modifier
                 .fillMaxWidth()
-                .padding(5.dp)
+                .padding(end = 5.dp)
         )
     }
 }
@@ -62,7 +70,11 @@ fun InformationLine(
     text:String,
     modifier: Modifier=Modifier
 ){
-    Text(text = text,modifier=modifier)
+    Text(
+        text = text,
+        style = MaterialTheme.typography.labelMedium,
+        modifier=modifier
+    )
 }
 @Composable
 fun WelcomeInformations(
@@ -70,11 +82,11 @@ fun WelcomeInformations(
 ){
     Column {
         InformationLine(
-            text = "biland ostatnich 24h: +8,75%",
+            text = "bilans ostatnich 24h: +8,75%",
             Modifier.padding(5.dp)
         )
         InformationLine(
-            text = "biland ostatnich 30 dni: -0,75%",
+            text = "bilans ostatnich 30 dni: -0,75%",
             Modifier.padding(5.dp)
         )
     }
@@ -89,7 +101,12 @@ fun InvestitionsColumn(
         LazyColumn(){
             item{
                 Row() {
-                    Text(text = "Lista Inwestycji")
+                    Text(
+                        text = "Lista Inwestycji",
+                        style = MaterialTheme.typography.titleLarge,
+                        modifier = Modifier
+                            .padding(5.dp)
+                    )
                 }
             }
             items(investitionsList){record->
