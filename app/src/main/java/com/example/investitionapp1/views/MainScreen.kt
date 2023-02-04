@@ -1,5 +1,7 @@
 package com.example.investitionapp1.views
 
+import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,10 +10,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.material3.*
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,16 +26,38 @@ import com.example.investitionapp1.Greeting
 import com.example.investitionapp1.data.structures.InvestitionRowRecord
 import com.example.investitionapp1.ui.theme.InvestitionApp1Theme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     modifier: Modifier=Modifier
 ){
-    Column {
-        WelcomeInfo(text = "witaj, XYZ!", saldo = "2132,12zł")
-        WelcomeInformations()
-        InvestitionsColumn(investitionsList = exampleInvList)
-    }
+    ScaffoldDemo()
+}
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ScaffoldDemo(){
+    val ctx =LocalContext.current
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(onClick = {
+                Toast.makeText(ctx,"TEST",Toast.LENGTH_SHORT).show()
+            }) {
+
+                Icon(
+                    Icons.Filled.Add,""
+                )
+            }
+        },
+        content = {
+            Column {
+                WelcomeInfo(text = "witaj, XYZ!", saldo = "2132,12zł")
+                WelcomeInformations()
+                InvestitionsColumn(investitionsList = exampleInvList)
+            }
+        }
+    )
 }
 
 @Composable
@@ -150,6 +177,8 @@ fun InvestitionRecord(
     }
 }
 
+
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
@@ -190,7 +219,7 @@ val exampleInvList:List<InvestitionRowRecord> = listOf(
 @Composable
 fun DefaultColumnPreview() {
     InvestitionApp1Theme {
-        MainScreen()
+        ScaffoldDemo()
     }
 }
 
