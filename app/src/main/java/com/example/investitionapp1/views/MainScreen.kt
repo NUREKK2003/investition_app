@@ -42,7 +42,7 @@ fun ScaffoldDemo(){
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(onClick = {
-                Toast.makeText(ctx,"TEST",Toast.LENGTH_SHORT).show()
+                Toast.makeText(ctx,"TEST1",Toast.LENGTH_SHORT).show()
             }) {
 
                 Icon(
