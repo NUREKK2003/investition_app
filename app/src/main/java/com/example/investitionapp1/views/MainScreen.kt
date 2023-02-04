@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.material3.*
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -31,7 +32,7 @@ import com.example.investitionapp1.ui.theme.InvestitionApp1Theme
 fun MainScreen(
     modifier: Modifier=Modifier
 ){
-    ScaffoldDemo()
+    NavDrawerExample()
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -39,6 +40,7 @@ fun MainScreen(
 @Composable
 fun ScaffoldDemo(){
     val ctx =LocalContext.current
+    //val scaffoldState = rememberScaffoldState()
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(onClick = {
@@ -56,6 +58,25 @@ fun ScaffoldDemo(){
                 WelcomeInformations()
                 InvestitionsColumn(investitionsList = exampleInvList)
             }
+        }
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun NavDrawerExample() {
+    ModalNavigationDrawer(
+        drawerContent = {
+            Column {
+                // Add items to the navigation drawer
+                // Example:
+                Text("Home")
+                Text("Settings")
+                Text("About")
+            }
+        },
+        content = {
+            ScaffoldDemo()
         }
     )
 }
